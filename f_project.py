@@ -50,7 +50,7 @@ student_info = [
         "year": "second",
         "marks": {
             "python": 84,
-            "math": 70,
+            "math": 75,
             "physics": 98,
             "english": 75
         }
