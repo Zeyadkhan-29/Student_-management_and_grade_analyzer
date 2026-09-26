@@ -70,8 +70,45 @@ while True:
     user_choice=int(input("enter your choice = "))
     if(user_choice==1):
         print("Add Student")
-        student_info.append({"name": input("Name: "), "age": int(input("Age: ")), "regNo": int(input("Reg No: ")), "class": input("Class: "), "section": input("Section: "), "year": input("Year: "), "marks": {}})
 
+        name = input("Name: ")
+        age = int(input("Age: "))
+        reg_no = int(input("Reg No: "))
+        duplicate = False
+
+        for student in student_info:
+            if student["regNo"] == reg_no:
+                duplicate = True
+                break
+
+        if duplicate:
+            print("Registration number already exists")
+            continue
+        student_class = input("Class: ")
+        section = input("Section: ")
+        year = input("Year: ")
+
+        python_marks = int(input("Python marks: "))
+        math_marks = int(input("Math marks: "))
+        physics_marks = int(input("Physics marks: "))
+        english_marks = int(input("English marks: "))
+
+        student_info.append({
+            "name": name,
+            "age": age,
+            "regNo": reg_no,
+            "class": student_class,
+            "section": section,
+            "year": year,
+            "marks": {
+                "python": python_marks,
+                "math": math_marks,
+                "physics": physics_marks,
+                "english": english_marks
+            }
+        })
+
+        print("Student added successfully")
 
     elif(user_choice==2):
         print("Remove Student")
@@ -139,6 +176,9 @@ while True:
 
     elif(user_choice==6):
         print("Grade Analysis")
+        if len(student_info) == 0:
+            print("No students available")
+            continue
         for student in student_info:
             total=0
             for mark in student["marks"].values():
